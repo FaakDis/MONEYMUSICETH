@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MONEYMUSIC.ETH | Blockchain Music Label</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Adjust header height to fit content */
+    header {
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(130deg, #141414, #2b2b2b, #121212);
+      color: #00fff0;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://faakdis.com/MONEYMUSIC_ETH/bckgrd.png') center/cover;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      animation: neon 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes neon {
+      from { text-shadow: 0 0 10px #00fff0, 0 0 20px #00fff0; }
+      to { text-shadow: 0 0 20px #00fff0, 0 0 40px #00fff0; }
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    /* Music Player DApp */
+    #music-player {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00fff0;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .player-controls button {
+      background-color: #00fff0;
+      border: none;
+      border-radius: 50%;
+      margin: 0 10px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .player-controls button:hover {
+      transform: scale(1.1);
+      background-color: #00c3a0;
+    }
+
+    .track-info {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .track-info p {
+      margin-bottom: 5px;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    /* Footer compact */
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #101010;
+      color: #fff;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #00fff0;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Body height adjustments to avoid scrolling */
+    body, html {
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #main-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      #music-player {
+        max-width: 90%;
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .player-controls button {
+        padding: 8px;
+        margin: 0 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Landing Section -->
+  <header>
+    <div>
+      <h1>MONEYMUSIC.ETH</h1>
+      <p>Where Music Meets Blockchain</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <!-- Music Player DApp -->
+    <div id="music-player">
+      <audio id="audio-player" controls>
+        <source src="https://faakdis.com/MUSIC/MONEYMUSICETH/All%20i%20see%20is%20money%20money%20money%20.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="track-info">
+        <p id="track-title">Track 1: All I See is Money</p>
+        <p>Now Playing: MONEYMUSIC.ETH</p>
+      </div>
+      <div class="player-controls">
+        <button onclick="prevTrack()">⏮️</button>
+        <button onclick="playPause()">⏯️</button>
+        <button onclick="nextTrack()">⏭️</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Join the Revolution at <a href="https://x.com/moneymusiceth">MONEYMUSIC.ETH</a></p>
+    <p>© 2024 MONEYMUSIC.ETH. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const tracks = [
+      {title: "All I See is Money", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/All%20i%20see%20is%20money%20money%20money%20.mp3"},
+      {title: "BELIEVE", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/BELIEVE.mp3"},
+      {title: "BRAINSTORM", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/BRAINSTORM.mp3"},
+      {title: "BREAK IT DOWN", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/BREAK%20IT%20DOWN.mp3"},
+      {title: "CHILL OUT", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/CHILL%20OUT.mp3"},
+      {title: "Crypto Hustle", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Crypto%20Hustle.mp3"},
+      {title: "Electric Heartbeat", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Electric%20Heartbeat.mp3"},
+      {title: "GONE", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/GONE.mp3"},
+      {title: "HYSTERIA", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/HYSTERIA.mp3"},
+      {title: "Into the Cosmos", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Into%20the%20Cosmos.mp3"},
+      {title: "Life in the Fast Lane", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Life%20in%20the%20Fast%20Lane.mp3"},
+      {title: "Midnight Hustle", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Midnight%20Hustle.mp3"},
+      {title: "MONEY GO UP", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/MONEY%20GO%20UP%20%20!.mp3"},
+      {title: "ohoh", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/ohoh.MP3"},
+      {title: "PANIC", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/PANIC.mp3"},
+      {title: "Pixel Dreams", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/Pixel%20Dreams.mp3"},
+      {title: "SPEED UP", src: "https://faakdis.com/MUSIC/MONEYMUSICETH/SPEED%20UP.mp3"}
+    ];
+
+    let currentTrack = 0;
+    const audioPlayer = document.getElementById('audio-player');
+    const trackTitle = document.getElementById('track-title');
+
+    function loadTrack(index) {
+      audioPlayer.src = tracks[index].src;
+      trackTitle.textContent = `Track ${index + 1}: ${tracks[index].title}`;
+      audioPlayer.play();
+    }
+
+    function prevTrack() {
+      currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+      loadTrack(currentTrack);
+    }
+
+    function nextTrack() {
+      currentTrack = (currentTrack + 1) % tracks.length;
+      loadTrack(currentTrack);
+    }
+
+    function playPause() {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        audioPlayer.pause();
+      }
+    }
+  </script>
+</body>
+</html>
